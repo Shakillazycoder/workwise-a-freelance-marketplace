@@ -54,7 +54,7 @@ const JobDetails = () => {
       }
 
 
-    //  fetch('http://localhost:3000/bids', {
+    //  fetch('https://workwise-server.vercel.app/bids', {
     //     method: 'POST',
     //     headers: {
     //       'Content-Type': 'application/json',

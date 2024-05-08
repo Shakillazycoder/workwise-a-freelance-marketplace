@@ -10,7 +10,7 @@ const PostedJobs = () => {
 
   const [remaining, setRemaining] = useState(false)
 
-//  const url = `http://localhost:3000/jobsId/${user?.email}`
+//  const url = `https://workwise-server.vercel.app/jobsId/${user?.email}`
  const url = `/jobsId/${user?.email}`
 
  useEffect(() => {
@@ -21,7 +21,7 @@ const PostedJobs = () => {
   }, [url, remaining, axiosSecure])
 
   const handleDelete = _id => { 
-    // fetch(`http://localhost:3000/jobs/${_id}`, {
+    // fetch(`https://workwise-server.vercel.app/jobs/${_id}`, {
     //   method: 'DELETE',
     // })
     axiosSecure.delete(`/jobs/${_id}`)

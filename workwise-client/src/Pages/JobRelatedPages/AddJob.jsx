@@ -35,7 +35,7 @@ const AddJob = () => {
       bid_count: 0,
     }
    
-    fetch('http://localhost:3000/job', {
+    fetch('https://workwise-server.vercel.app/job', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

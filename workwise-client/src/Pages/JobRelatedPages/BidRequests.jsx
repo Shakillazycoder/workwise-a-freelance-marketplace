@@ -12,7 +12,7 @@ const BidRequests = () => {
     // const [remaining, setRemaining] = useState(false)
   
   
-  //  const url = `http://localhost:3000/bidsRequest/${user?.email}`
+  //  const url = `https://workwise-server.vercel.app/bidsRequest/${user?.email}`
 
 
    const url = `/bidsRequest/${user?.email}`
@@ -32,7 +32,7 @@ const handleStatus = (id, prevStatus, status) => {
     if(prevStatus === status) return
 
 
-    // fetch(`http://localhost:3000/bids/${id}`, {
+    // fetch(`https://workwise-server.vercel.app/bids/${id}`, {
     //   method: 'PATCH',
     //   headers: {
     //     'Content-Type': 'application/json',

@@ -10,18 +10,16 @@ const port = process.env.PORT || 3000;
 // middleware
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", 'https://workwise-markerplace.web.app'],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
   })
 );
 app.use(express.json());
 app.use(cookieParser());
 
-// workwise
-// iUNhIIYG2CQ2rZrb
-
 const uri =
-  "mongodb+srv://workwise:iUNhIIYG2CQ2rZrb@cluster0.0rmazcr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.0rmazcr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -50,7 +48,7 @@ const logger = (req, res, next) => {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     const jobsCollection = client.db("workwise").collection("jobs");
     const bidsCollection = client.db("workwise").collection("bids");

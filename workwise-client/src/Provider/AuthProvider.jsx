@@ -55,7 +55,7 @@ import auth from "../Firebase/firebase.config";
           setLoading(false);
           console.log(currentUser);
           if(currentUser){
-            axios.post('http://localhost:3000/jwt', loggedUser, {
+            axios.post('https://workwise-server.vercel.app/jwt', loggedUser, {
               withCredentials: true
             })
             .then( res => {
@@ -63,7 +63,7 @@ import auth from "../Firebase/firebase.config";
             })
           }else {
             axios
-              .post("http://localhost:3000/logout", loggedUser, {
+              .post("https://workwise-server.vercel.app/logout", loggedUser, {
                 withCredentials: true,
               })
               .then((res) => {

@@ -8,7 +8,7 @@ const Categories = () => {
   const [jobs, setJobs] = useState([]);
   const axiosSecure = useAxiosSecure();
 
-  // const url = "http://localhost:3000/jobs";
+  // const url = "https://workwise-server.vercel.app/jobs";
   const url = "/jobs";
 
   useEffect(() => {

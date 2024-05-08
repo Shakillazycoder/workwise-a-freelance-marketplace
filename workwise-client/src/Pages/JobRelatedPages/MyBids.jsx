@@ -9,7 +9,7 @@ const MyBids = () => {
     const axiosSecure = useAxiosSecure();
   
   
-    // const url = `http://localhost:3000/myBids/${user?.email}`
+    // const url = `https://workwise-server.vercel.app/myBids/${user?.email}`
     const url = `/myBids/${user?.email}`
   
    useEffect(() => {
@@ -20,7 +20,7 @@ const MyBids = () => {
     }, [url, axiosSecure])
 
    const handleStatus = (id) => {
-    // fetch(`http://localhost:3000/bids/${id}`, {
+    // fetch(`https://workwise-server.vercel.app/bids/${id}`, {
     //   method: 'PATCH',
     //   headers: {
     //     'Content-Type': 'application/json',

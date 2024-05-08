@@ -45,7 +45,7 @@ const UpdateJob = () => {
           },
         }
       
-        fetch(`http://localhost:3000/updateJob/${_id}`, {
+        fetch(`https://workwise-server.vercel.app/updateJob/${_id}`, {
           method: 'PUT',    
           headers: {
             'Content-Type': 'application/json',

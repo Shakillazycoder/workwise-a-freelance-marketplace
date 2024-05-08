@@ -50,12 +50,12 @@ import AllJobs from "../Pages/JobRelatedPages/AllJobs";
           {
             path: "/jobDetails/:id",
             element: <PrivateRoutes><JobDetails></JobDetails></PrivateRoutes>,
-            loader: ({params}) => fetch(`http://localhost:3000/jobs/${params.id}`)
+            loader: ({params}) => fetch(`https://workwise-server.vercel.app/jobs/${params.id}`)
           },
           {
             path: "/UpdateJob/:id",
             element: <PrivateRoutes><UpdateJob></UpdateJob></PrivateRoutes>,
-            loader: ({params}) => fetch(`http://localhost:3000/jobs/${params.id}`)
+            loader: ({params}) => fetch(`https://workwise-server.vercel.app/jobs/${params.id}`)
           },
           {
             path: "/allJobs",
