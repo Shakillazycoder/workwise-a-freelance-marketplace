@@ -40,6 +40,13 @@ const Header = () => {
           Bid Requests
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/allJobs"
+        >
+          All Jobs
+        </NavLink>
+      </li>
     </>
   );
 

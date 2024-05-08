@@ -32,6 +32,7 @@ const AddJob = () => {
         name: user?.displayName,
         photo: user?.photoURL,
       },
+      bid_count: 0,
     }
    
     fetch('http://localhost:3000/job', {

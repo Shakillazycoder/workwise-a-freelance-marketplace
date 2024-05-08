@@ -1,43 +1,37 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../Provider/AuthProvider'
+import useAxiosSecure from '../../Hooks/useAxiosSecure'
 
 const PostedJobs = () => {
   const { user } = useContext(AuthContext)
   const [jobs, setJobs] = useState([])
+  const axiosSecure = useAxiosSecure();
 
   const [remaining, setRemaining] = useState(false)
 
- const url = `http://localhost:3000/jobsId/${user?.email}`
+//  const url = `http://localhost:3000/jobsId/${user?.email}`
+ const url = `/jobsId/${user?.email}`
 
  useEffect(() => {
-    fetch(url)
-     .then((res) => res.json())
-     .then((data) => {
-        setJobs(data)
-      })
-     .catch((err) => {
-        console.log(err);
-      });
-  }, [url, remaining])
+  axiosSecure.get(url)
+  .then((res) => {
+     setJobs(res.data);
+   })
+  }, [url, remaining, axiosSecure])
 
   const handleDelete = _id => { 
-    fetch(`http://localhost:3000/jobs/${_id}`, {
-      method: 'DELETE',
-    })
-     .then((res) => res.json())
+    // fetch(`http://localhost:3000/jobs/${_id}`, {
+    //   method: 'DELETE',
+    // })
+    axiosSecure.delete(`/jobs/${_id}`)
      .then((data) => {
-        console.log(data);
-        if(data.deletedCount > 0) {
+        console.log(data.data);
+        if(data.data.deletedCount > 0) {
         alert('Job Deleted Successfully')
         setRemaining(!remaining)
         }
-
       })
-     .catch((err) => {
-        console.log(err);
-      });
-
   }
 
   

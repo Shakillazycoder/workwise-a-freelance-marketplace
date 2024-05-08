@@ -1,10 +1,14 @@
 import { useContext, useState } from 'react'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../Provider/AuthProvider'
 import ReactDatePicker from 'react-datepicker'
+import useAxiosSecure from '../../Hooks/useAxiosSecure'
 const JobDetails = () => {
   const [startDate, setStartDate] = useState(new Date())
   const { user } = useContext(AuthContext)
+  const axiosSecure = useAxiosSecure();
+
+  const navigate = useNavigate()
 
   const job = useLoaderData()
   const {
@@ -46,25 +50,31 @@ const JobDetails = () => {
         category,
         email,
         buyer_email:buyer?.email,
-        status
+        status,
       }
-    
-      console.table(bidData)
-     fetch('http://localhost:3000/bids', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bidData),
-     })
-     .then((res) => res.json())
-     .then((data) => {
-        console.log(data)
-        alert('Bid Placed Successfully')
-        form.reset()
- 
-     })
- }
+
+
+    //  fetch('http://localhost:3000/bids', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(bidData),
+    //  })
+    //  .then((res) => res.json())
+    axiosSecure.post("/bids", bidData)
+    .then((data) => {
+      console.log('hello');
+      console.log(data.data.status);
+      alert('Bid Placed Successfully');
+      navigate("/bids");
+      // form.reset();
+    })
+    // .catch((error) => {
+    //     // console.log(error);
+    //   } )
+
+    }
 
   return (
     <div className='flex flex-col md:flex-row justify-around gap-5  items-center min-h-[calc(100vh-306px)] md:max-w-screen-xl mx-auto '>

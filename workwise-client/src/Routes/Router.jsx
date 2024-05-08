@@ -11,6 +11,8 @@ import MyBids from "../Pages/JobRelatedPages/MyBids";
 import BidRequests from "../Pages/JobRelatedPages/BidRequests";
 import JobDetails from "../Pages/JobRelatedPages/JobDetails";
 import UpdateJob from "../Pages/JobRelatedPages/UpdateJob";
+import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
+import AllJobs from "../Pages/JobRelatedPages/AllJobs";
   
   const router = createBrowserRouter([
     {
@@ -31,29 +33,33 @@ import UpdateJob from "../Pages/JobRelatedPages/UpdateJob";
           },
           {
             path: "/addJob",
-            element: <AddJob></AddJob>,
+            element: <PrivateRoutes><AddJob></AddJob></PrivateRoutes>,
           },
           {
             path: "/postJob",
-            element: <PostedJobs></PostedJobs>,
+            element: <PrivateRoutes><PostedJobs></PostedJobs></PrivateRoutes>,
           },
           {
             path: "/bids",
-            element: <MyBids></MyBids>,
+            element: <PrivateRoutes><MyBids></MyBids></PrivateRoutes>,
           },
           {
             path: "/bidRequest",
-            element: <BidRequests></BidRequests>,
+            element: <PrivateRoutes><BidRequests></BidRequests></PrivateRoutes>,
           },
           {
             path: "/jobDetails/:id",
-            element: <JobDetails></JobDetails>,
+            element: <PrivateRoutes><JobDetails></JobDetails></PrivateRoutes>,
             loader: ({params}) => fetch(`http://localhost:3000/jobs/${params.id}`)
           },
           {
             path: "/UpdateJob/:id",
-            element: <UpdateJob></UpdateJob>,
+            element: <PrivateRoutes><UpdateJob></UpdateJob></PrivateRoutes>,
             loader: ({params}) => fetch(`http://localhost:3000/jobs/${params.id}`)
+          },
+          {
+            path: "/allJobs",
+            element: <AllJobs/>,
           }
       ]
     },

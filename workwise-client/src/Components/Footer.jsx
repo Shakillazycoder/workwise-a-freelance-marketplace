@@ -1,4 +1,6 @@
 const Footer = () => {
+    const year = useYearChange();
+
     return (
         <div>
             <footer className="bg-[#0dcdbd] ">
@@ -25,7 +27,7 @@ const Footer = () => {
         <hr className="my-6 border-gray-200 md:my-10 dark:border-gray-700" />
 
         <div className="flex flex-col items-center sm:flex-row sm:justify-between">
-            <p className="text-sm text-gray-500 dark:text-gray-200">© Copyright 2021. All Rights Reserved.</p>
+            <p className="text-sm text-gray-500 dark:text-gray-200 flex gap-1">© Copyright {year}. All Rights Reserved.</p>
 
             <div className="flex -mx-2">
                 <a href="#" className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400" aria-label="Reddit">
@@ -64,3 +66,4 @@ const Footer = () => {
 
 export default Footer;
 import logo from "../../src/assets/LogoImage.jpeg"
+import useYearChange from "../Hooks/useYearChange";

@@ -44,15 +44,37 @@ import auth from "../Firebase/firebase.config";
       }
     
       useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (createUser) => {
-          setUser(createUser);
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+
+          const userEmail = currentUser?.email || user?.email;
+          console.log(userEmail);
+
+          const loggedUser = {email: userEmail}
+
+          setUser(currentUser);
           setLoading(false);
-          console.log(createUser);
+          console.log(currentUser);
+          if(currentUser){
+            axios.post('http://localhost:3000/jwt', loggedUser, {
+              withCredentials: true
+            })
+            .then( res => {
+              console.log("token response", res.data);
+            })
+          }else {
+            axios
+              .post("http://localhost:3000/logout", loggedUser, {
+                withCredentials: true,
+              })
+              .then((res) => {
+                console.log(res.data);
+              });
+          }
         });
         return () => {
           unsubscribe();
         };
-      }, [profileUpdate]);
+      }, [profileUpdate, user?.email]);
       const AuthInfo = { user, loading, setProfileUpdate, CreateUser, googleSignIn, gitHubSignIn, signInUser, SignOutUser };
       return (
         <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
@@ -60,3 +82,4 @@ import auth from "../Firebase/firebase.config";
     };
     
     export default AuthProvider;
+    import axios from "axios";
